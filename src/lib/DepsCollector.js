@@ -34,7 +34,9 @@ export default class DepsCollector {
         (newDeps, dep) => {
           if (dep.match(/^[./]/)) {
             // dep is to a path
-            const depPath = path.resolve(path.dirname(srcFile), dep)
+            const depPath = require.resolve(dep, {
+              paths: [path.dirname(srcFile)]
+            })
             newDeps.internal.add(depPath)
           } else {
             if (dep[0] === "@") {
