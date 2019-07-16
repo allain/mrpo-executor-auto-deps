@@ -11,7 +11,9 @@ export default async function updateNpmDependencies(dependencies, config) {
 
   await fs.ensureDir(path.resolve(config.cwd, "node_modules"))
 
-  const needsRemoving = new Set(Object.keys(pkg.dependencies || {}))
+  pkg.dependencies = pkg.dependencies || {}
+
+  const needsRemoving = new Set(Object.keys(pkg.dependencies))
 
   for (const dependency of dependencies) {
     let needInstall = false
