@@ -6,7 +6,7 @@ import Debug from "debug"
 
 const debug = Debug("mrpo:javascript-pika-executor")
 
-export default async function installNodeModules(dependencies, config) {
+export default async function updateNpmDependencies(dependencies, config) {
   const pkg = await loadJsonFile(path.resolve(config.cwd, "package.json"))
 
   await fs.ensureDir(path.resolve(config.cwd, "node_modules"))
