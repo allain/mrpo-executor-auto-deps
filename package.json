@@ -1,0 +1,42 @@
+{
+  "name": "mrpo-executor-auto-deps",
+  "version": "0.1.0",
+  "description": "A mrpo executor that automatically handles npm dependencies as source code changes.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "pack build",
+    "test": "pack build --silent && jest"
+  },
+  "author": "Allain Lalonde <allain.lalonde@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.0.2",
+    "execa": "^2.0.3",
+    "fs-extra": "^8.1.0",
+    "precinct": "^6.1.2"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-standard-pkg",
+        {
+          "exclude": [
+            "tests/**/*",
+            "**/*.test.*",
+            "**/*.json"
+          ]
+        }
+      ],
+      [
+        "@pika/plugin-build-node"
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@pika/pack": "^0.4.0",
+    "@pika/plugin-build-node": "^0.4.0",
+    "@pika/plugin-standard-pkg": "^0.4.0",
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0"
+  }
+}
