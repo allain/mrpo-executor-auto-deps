@@ -14,17 +14,27 @@ export default async function updateNpmDependencies(dependencies, config) {
   const needsRemoving = new Set(Object.keys(pkg.dependencies))
 
   for (const dependency of dependencies) {
-    try {
-      // Check to see if the dep is already instealled
-      require.resolve(dependency, { paths: [config.cwd] })
-    } catch (err) {
+    let needInstall = false
+    if (pkg.dependencies[dependency]) {
+      try {
+        // Check to see if the dep is already instealled
+        require.resolve(dependency, { paths: [config.cwd] })
+      } catch (err) {
+        needInstall = true
+      }
+    } else {
+      needInstall = true
+    }
+
+    if (needInstall) {
       await installNodeModule(dependency, config)
     }
+
     needsRemoving.delete(dependency)
   }
 
   for (const name of needsRemoving) {
-    await removeNpmModule(name)
+    await removeNpmModule(name, config)
   }
 }
 
