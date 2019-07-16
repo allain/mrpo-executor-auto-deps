@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "pack build",
-    "test": "pack build --silent && jest"
+    "test": "pack build --silent && jest",
+    "version": "npm run build"
   },
   "author": "Allain Lalonde <allain.lalonde@gmail.com>",
   "license": "MIT",
