@@ -1,12 +1,12 @@
 import path from "path"
 import Debug from "debug"
-import DepsCollector from "../lib/DepsCollector"
+import collectDeps from "collect-deps"
 import { loadJsonFile } from "../lib/fs-utils"
 
 import updateNpmModules from "../lib/update-npm-dependencies"
 
 export default async function build(config) {
-  const codeDeps = await DepsCollector.collectFrom(
+  const codeDeps = await collectDeps(
     path.resolve(config.cwd, "src", "index.js")
   )
 

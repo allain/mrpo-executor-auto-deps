@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "chokidar": "^3.0.2",
+    "collect-deps": "^0.1.1",
     "execa": "^2.0.3",
     "fs-extra": "^8.1.0",
     "precinct": "^6.1.2"

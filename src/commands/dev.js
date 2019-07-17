@@ -2,7 +2,7 @@ import path from "path"
 import chokidar from "chokidar"
 import { loadJsonFile } from "../lib/fs-utils"
 
-import DepsCollector from "../lib/DepsCollector"
+import { DepsCollector } from "collect-deps"
 import updateNpmDependencies from "../lib/update-npm-dependencies"
 
 export default {
